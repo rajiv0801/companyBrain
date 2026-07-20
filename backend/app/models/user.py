@@ -3,6 +3,7 @@ from sqlalchemy.sql import func
 
 from app.db.database import Base
 
+from sqlalchemy.orm import relationship
 
 class User(Base):
     __tablename__ = "users"
@@ -26,4 +27,10 @@ class User(Base):
         server_default=func.now(),
         onupdate=func.now(),
         nullable=False,
+    )
+
+    documents = relationship(
+        "Document",
+        back_populates="user",
+        cascade="all, delete-orphan"
     )
