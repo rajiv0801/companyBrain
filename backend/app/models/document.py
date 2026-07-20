@@ -4,6 +4,7 @@ from sqlalchemy.orm import relationship
 
 from app.db.database import Base
 
+from sqlalchemy import Text
 
 class Document(Base):
     __tablename__ = "documents"
@@ -15,6 +16,8 @@ class Document(Base):
     file_type = Column(String, nullable=False)
     file_size = Column(Integer, nullable=False)
     file_path = Column(String, nullable=False)
+
+    text = Column(Text, nullable=True)
 
     uploaded_by = Column(Integer, ForeignKey("users.id"))
 
